@@ -33,11 +33,8 @@ extern	Func_ClearBox	ClearBoxF	;
 extern	Func_ClearBox	ClearBoxM	;
 
 //****************************************************************************
-extern void	SetClearColor(U32 color);
 
-#pragma aux SetClearColor	"*"	\
-	parm caller	[eax]			\
-	modify	[ecx edx]
+extern void	SetClearColor(U32 color);
 
 //****************************************************************************
 #ifdef	__cplusplus

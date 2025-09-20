@@ -71,8 +71,8 @@ ClearBoxInit	endp
 ;	parm	[eax]			\
 ;	modify	[ecx edx]
 
-SetClearColor	proc
-
+SetClearColor PROC color:DWORD 
+		mov eax, color
 		and	eax, 0FFh	; 000C
 
 		mov	edx, eax	; 000C
