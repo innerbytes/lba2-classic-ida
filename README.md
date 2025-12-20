@@ -2,6 +2,8 @@
 
 This is a work on top of the **Little Big Adventure 2 - Engine source code - Community** and **yaz0r** fork, that makes the LBA2 community project buildable and fully playable on Windows.
 
+*NB:* This repository does not have the IdaJS project. If you are looking for IdaJS, please visit: https://ida.innerbytes.com/
+
 ## List of fixes on top of the **yaz0r** fork
 
 (https://github.com/yaz0r/lba2-classic-community/)
@@ -93,7 +95,7 @@ Make backup of existing files before deploying if necessary.
 
 # How can I contribute ?
 
-Read [Contribution Guidelines](https://github.com/pleasenophp/lba2-classic-ida/blob/main/CONTRIBUTING.md).
+Read [Contribution Guidelines](CONTRIBUTING.md).
 
 # Little Big Adventure 2 - Engine source code - Community
 
@@ -105,7 +107,7 @@ The engine uses Assembly code and was originally compiled with non-open source l
 
 ### Licence
 
-This source code is licensed under the [GNU General Public License](https://github.com/2point21/lba2-classic-community/blob/main/LICENSE).
+This source code is licensed under the [GNU General Public License](LICENSE).
 
 Please note this license only applies to **Little Big Adventure 2** engine source code. **Little Big Adventure 2** game assets (art, models, textures, audio, etc.) are not open-source and therefore aren't redistributable.
 
