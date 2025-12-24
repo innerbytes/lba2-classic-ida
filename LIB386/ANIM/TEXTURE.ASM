@@ -1,4 +1,3 @@
-
 		.386p
 
 		.MODEL	SMALL, C
@@ -18,8 +17,10 @@
 ;	parm		[ebx] [eax]	\
 ;	modify exact 	[]
 
-ObjectInitTexture proc
+ObjectInitTexture proc obj:DWORD, texture:DWORD
 
+		mov	ebx, obj
+		mov	eax, texture
 		mov	[ebx].OBJ_3D.NextTexture, eax
 		cmp	[ebx].OBJ_3D.Texture, -1
 		jne	oktexture

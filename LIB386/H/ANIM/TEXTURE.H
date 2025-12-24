@@ -8,11 +8,7 @@ extern	"C"	{
 #endif
 
 //****************************************************************************
-void	ObjectInitTexture(T_OBJ_3D *obj, void *texture)	;
-
-#pragma aux ObjectInitTexture	"*"	\
-	parm caller		[ebx] [eax]	\
-	modify exact 	[]
+void ObjectInitTexture(T_OBJ_3D *obj, void *texture);
 
 //****************************************************************************
 #ifdef	__cplusplus
