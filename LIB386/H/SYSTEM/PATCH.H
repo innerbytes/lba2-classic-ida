@@ -11,11 +11,14 @@ extern	"C"	{
 #ifdef	_WIN32
 
 //──────────────────────────────────────────────────────────────────────────
-S32	AllowPatch(void *start, void *len)	;
-
-#pragma aux AllowPatch	"*"	\
-	parm caller	[eax] [edx]	\
-	modify 	[ecx]
+// This is not used anymore! If ever using it from C/CPP - 
+// change assembly function to read arguments from stack!
+// If you do so, make sure the assembly that calls this function uses the correct calling convention too.
+// 
+// S32	AllowPatch(void *start, void *len)	;
+// #pragma aux AllowPatch	"*"	\
+// 	parm caller	[eax] [edx]	\
+// 	modify 	[ecx]
 
 //──────────────────────────────────────────────────────────────────────────
 #else //YAZ_WIN32
