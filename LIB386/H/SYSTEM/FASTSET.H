@@ -17,6 +17,7 @@ typedef	void	Func_FastSet(void *dst, S32 val, U32 len) ;
 #pragma	aux (Arg_FastSet)	Func_FastSet
 
 //****************************************************************************
+// NOTE - looks like nobofy uses this anymore...
 extern	Func_FastSet	*FastSet	;
 
 #pragma aux FastSet	"*"

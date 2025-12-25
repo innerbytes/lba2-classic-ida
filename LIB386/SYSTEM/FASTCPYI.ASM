@@ -16,7 +16,7 @@
 ;	parm	[edi] [esi] [ecx]	\
 ;	modify	[eax ebx edx]
 
-FastCopyI		PROC
+FastCopyI		PROC uses ebx
 
 			cmp	ecx, 8
 			jb	cpybyte

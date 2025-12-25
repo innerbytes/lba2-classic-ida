@@ -16,7 +16,7 @@
 ;	parm	[edi] [eax] [ecx]	\
 ;	modify	[ebx edx]
 
-FastSetI		PROC
+FastSetI		PROC uses ebx
 
 			and	eax, 0FFh	; 000C
 

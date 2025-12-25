@@ -29,7 +29,7 @@
 ;	parm	[eax] [ecx] [edx]	\
 ;	modify	[ebx esi edi]
 
-RotateI		proc
+RotateI		proc uses ebx esi edi
 
 		and	edx, 4095
 

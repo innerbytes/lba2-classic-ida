@@ -28,7 +28,7 @@
 
 ;#pragma	aux	RotateM	"*"		\
 ;	parm		[eax] [ecx] [edx]	\
-;	modify		[ebx esi edi]
+;	modify		[ebx esi edi] // NOTE - does not anymore use any of these
 
 RotateM		proc
 

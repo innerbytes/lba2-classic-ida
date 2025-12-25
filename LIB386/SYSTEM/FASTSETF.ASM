@@ -16,7 +16,7 @@
 ;	parm	[edi] [eax] [ecx]	\
 ;	modify	[ebx edx esi]
 
-FastSetF		PROC
+FastSetF		PROC uses ebx esi
 
 			and	eax, 0FFh	; 000C
 			mov	esi, esp

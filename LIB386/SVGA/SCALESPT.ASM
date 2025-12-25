@@ -66,7 +66,7 @@ ScaleSpriteTranspInit endp
 ENDIF
 
 ;*══════════════════════════════════════════════════════════════════════════*/
-ScaleSpriteTransp	proc uses ebp,				\
+ScaleSpriteTransp	proc uses ebx esi edi ebp,				\
 		numbrick:	DWORD, 				\
 		xbrick:		DWORD,	ybrick:		DWORD,	\
 		factorx:	DWORD,	factory:	DWORD,	\
