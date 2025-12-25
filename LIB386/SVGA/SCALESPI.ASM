@@ -66,7 +66,7 @@ ScaleSpriteInit endp
 ENDIF
 
 ;*══════════════════════════════════════════════════════════════════════════*/
-ScaleSprite	proc uses ebp,		\
+ScaleSprite	proc uses ebx esi edi ebp		\
 		numbrick:	DWORD, 	\
 		xbrick:		DWORD,	ybrick:		DWORD, \
 		factorx:	DWORD,	factory:	DWORD, \

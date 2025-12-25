@@ -13,9 +13,11 @@ void	ScaleSprite(	S32	num,
 			S32	factorx,	S32	factory,
 			void	*ptrbank			 ) ;
 
+/*
 #pragma aux	ScaleSprite	"*"			\
 	parm caller	[]				\
-	modify		[eax ebx ecx edx esi edi]
+	modify		[eax ebx ecx edx esi edi ebp];
+*/
 
 //****************************************************************************
 #ifdef	__cplusplus
