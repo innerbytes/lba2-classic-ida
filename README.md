@@ -10,6 +10,9 @@ This is a work on top of the **Little Big Adventure 2 - Engine source code - Com
 
 (https://github.com/yaz0r/lba2-classic-community/)
 
+- **Fixed the car behavior**  
+  The car can now move with good speed, and turn normally. The shooting from the car is fixed. Car sounds are fixed.
+
 - **Added Video Playback Support**  
   Incorporated xesf's fix of video playback functionality; Implemented custom SmackerStream to address video sound issues.
 
