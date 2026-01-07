@@ -225,9 +225,9 @@ void	ClearSampleDriver()
 
 static S32 GetHandleIndice(U32 sample)
 {
-	S32		hnum	;
+	S32	hnum;
 
-	if(sample<0x1000000)
+	if (sample<0x1000000)
 	{
 		for(hnum=0; hnum<Nb_Voices; hnum++)
 		{
@@ -244,12 +244,13 @@ static S32 GetHandleIndice(U32 sample)
 		hnum = sample & 0xFF	;
 
 		// right sample playing?
-		if(Sample_Handle[hnum].sample == sample)
-			return hnum	;
+		if (Sample_Handle[hnum].sample == sample) 
+		{
+			return hnum;
+		}
 
 		// No already stopped
 		return	-1	;
-
 	}
 }
 
@@ -674,35 +675,55 @@ void	TimerStopSample()
 }
 
 //████████████████████████████████████████████████████████████████████████████
-void	ChangePitchbendSample( U32 sample, S32 pitchbend)
+void ChangePitchbendSample( U32 sample, S32 pitchbend)
 {
-	//HSAMPLE	handle	;
-	S32	hnum	;
-
-	if( !Sample_Driver_Enabled )	return	;
+	if (!Sample_Driver_Enabled)	return;
 
 	// check if user or lib handle and do conversion
-	hnum = GetHandleIndice(sample)		;
-
-	// found the sample ?
-	if(hnum==-1)			return 	;
+	S32 hnum = GetHandleIndice(sample);
+	if (hnum == -1)	return;
 
 	// Get sample handle
-//yaz	handle = Sample_Handle[hnum].handle	;
+	auto handle = Sample_Handle[hnum].handle;
+	
+	// Ida - refactored code starts here, using SoLoud instead of AIL
+	// Pitchbend uses fixed-point math with this bit range (12 bits = 4096 scale factor for 1.0x)
+	constexpr S32 pitchbendBitRange = 12;
+	constexpr S32 pitchbendNeutral = 1 << pitchbendBitRange;  // 4096 = no pitch change
 
-	// check sample status
-	//yaz if(AIL_sample_status( handle )==SMP_DONE)
-	//yaz 	return	;
+	auto soloudHandle = gSoundHandleMapping[handle].soloudHandle;
 
-	// pitchend
-	//yaz if( pitchbend != AIL_sample_user_data( handle, USER_DATA_PITCHBEND) )
+	if (!gSoloud->isValidVoiceHandle(soloudHandle))
 	{
-		//yaz AIL_set_sample_playback_rate(
-		//yaz 	handle,
-		//yaz 	Scale(AIL_sample_user_data( handle, USER_DATA_RATE), pitchbend, 12)) ;
-
-		//yaz AIL_set_sample_user_data( handle, USER_DATA_PITCHBEND, pitchbend);
+		return;
 	}
+
+	SoLoud::Wav *wav = gSoundHandleMapping[handle].soloudWave;
+	if (wav == nullptr) return;
+	float baseSampleRate = wav->mBaseSamplerate;
+
+	if (pitchbend != pitchbendNeutral)
+	{
+		gSoloud->setSamplerate(soloudHandle, Scale((int)baseSampleRate, pitchbend, pitchbendBitRange));
+	}
+	else
+	{
+		gSoloud->setSamplerate(soloudHandle, baseSampleRate);
+	}
+
+	// Old AIL code:
+	// // check sample status
+	// if (AIL_sample_status(handle) == SMP_DONE)
+	// {
+	// 	return;
+	// }
+	//
+	// // pitchend
+	// if (pitchbend != AIL_sample_user_data( handle, USER_DATA_PITCHBEND))
+	// {
+	// 	AIL_set_sample_playback_rate(handle, Scale(AIL_sample_user_data( handle, USER_DATA_RATE), pitchbend, 12));
+	// 	AIL_set_sample_user_data( handle, USER_DATA_PITCHBEND, pitchbend);
+	// }
 }
 
 //████████████████████████████████████████████████████████████████████████████
@@ -895,22 +916,21 @@ void	ResumeSamples()
 }
 
 //████████████████████████████████████████████████████████████████████████████
-
 U32	IsSamplePlaying( U32 sample )
 {
-	S32	hnum	;
+	S32	hnum;
 
-	if( !Sample_Driver_Enabled )
-		return	FALSE	;
+	if (!Sample_Driver_Enabled)
+		return FALSE;
 
 	// check if user or lib handle and do conversion
 	hnum = GetHandleIndice(sample)			;
 
 	// found the sample ?
-	if(hnum==-1)			return 	FALSE 	;
+	if (hnum==-1) return FALSE;
 
 	// get sample status
-	if(!gSoloud->isValidVoiceHandle(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle))
+	if (!gSoloud->isValidVoiceHandle(gSoundHandleMapping[Sample_Handle[hnum].handle].soloudHandle))
 	{
 		return 0;
 	}
