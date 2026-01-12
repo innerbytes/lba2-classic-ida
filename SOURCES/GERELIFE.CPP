@@ -693,8 +693,11 @@ S32    DoTest()
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 
-void	CleanTrack( T_OBJET *ptrobj )
+void	CleanTrack(S32 objectIndex, T_OBJET *ptrobj)
 {
+	// Ida - reset the stuck detector when restarting a track script for an object
+	StuckDetector::resetObject(objectIndex);
+
 	U8	*ptrtrack ;
 
 	if( ptrobj->OffsetTrack!=-1 )
@@ -1090,7 +1093,7 @@ void	DoLife( U8 numobj )
 
 //---------------------------------------------------------------------------
 			case LM_SET_TRACK:
-				CleanTrack( ptrobj ) ;
+				CleanTrack(numobj, ptrobj);
 				ptrobj->OffsetTrack = *(S16*)PtrPrg ;
 				PtrPrg += 2 ;
 				Track_SetLabel( ptrobj ) ;
@@ -1101,7 +1104,7 @@ void	DoLife( U8 numobj )
 				num = *PtrPrg++ ;
 				if( ListObjet[num].LifePoint>0 )
 				{
-					CleanTrack( &ListObjet[num] ) ;
+					CleanTrack(num, &ListObjet[num] ) ;
 					ListObjet[num].OffsetTrack = *(S16*)PtrPrg ;
 					Track_SetLabel( &ListObjet[num] ) ;
 				}
@@ -1110,7 +1113,7 @@ void	DoLife( U8 numobj )
 
 //---------------------------------------------------------------------------
 			case LM_STOP_L_TRACK:
-				CleanTrack( ptrobj ) ;
+				CleanTrack(num, ptrobj ) ;
 				ptrobj->MemoLabelTrack = ptrobj->OffsetLabelTrack ;
 				ptrobj->OffsetTrack = -1 ;
 				break ;
@@ -1120,7 +1123,7 @@ void	DoLife( U8 numobj )
 				num = *PtrPrg++ ;
 				if( ListObjet[num].LifePoint>0 )
 				{
-					CleanTrack( &ListObjet[num] ) ;
+					CleanTrack(num, &ListObjet[num] ) ;
 					ListObjet[num].MemoLabelTrack = ListObjet[num].OffsetLabelTrack ;
 					ListObjet[num].OffsetTrack = -1 ;
 				}
@@ -1128,7 +1131,7 @@ void	DoLife( U8 numobj )
 
 //---------------------------------------------------------------------------
 			case LM_RESTORE_L_TRACK:
-				CleanTrack( ptrobj ) ;
+				CleanTrack(numobj, ptrobj ) ;
 				ptrobj->OffsetTrack = ptrobj->MemoLabelTrack ;
 				Track_SetLabel( ptrobj ) ;
 				break ;
@@ -1138,7 +1141,7 @@ void	DoLife( U8 numobj )
 				num = *PtrPrg++ ;
 				if( ListObjet[num].LifePoint>0 )
 				{
-					CleanTrack( &ListObjet[num] ) ;
+					CleanTrack(num, &ListObjet[num] ) ;
 					ListObjet[num].OffsetTrack = ListObjet[num].MemoLabelTrack ;
 					Track_SetLabel( &ListObjet[num] ) ;
 				}
@@ -2410,7 +2413,7 @@ HERCULE( HPrintf( "errno= %d: %s\n", errno, strerror(errno) ) ) ;
 
 //---------------------------------------------------------------------------
 			case LM_VAR_GAME_TO_TRACK:
-				CleanTrack( ptrobj ) ;
+				CleanTrack(numobj, ptrobj ) ;
 
 				num = *PtrPrg++ ;
 				ptrobj->OffsetTrack = SearchOffsetTrack( ptrobj,

@@ -417,6 +417,9 @@ restartloop:
 
         FirstSave = TRUE ;
 
+// Ida - actions before starting the main loop
+        StuckDetector::reset();
+
         while( TRUE )
         {
 startloop:

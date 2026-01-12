@@ -560,6 +560,9 @@ typedef	struct
 #include	"HERCULE.H"
 #endif
 
+// Ida - additional helpers
+#include    "stuckDetector.h"
+
 #endif	// EDITLBA2
 
 /*──────────────────────────────────────────────────────────────────────────*/

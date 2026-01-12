@@ -202,6 +202,7 @@ xcopy "$(SolutionDir)Release\*.exe" "$(SolutionDir)dist\" /I /Y
     <ClInclude Include="SAVEGAME.H" />
     <ClInclude Include="SCAN.H" />
     <ClInclude Include="SORT.H" />
+    <ClInclude Include="stuckDetector.h" />
     <ClInclude Include="VALIDPOS.H" />
     <ClInclude Include="WAGON.H" />
     <ClInclude Include="ZV.H" />
@@ -281,6 +282,7 @@ xcopy "$(SolutionDir)Release\*.exe" "$(SolutionDir)dist\" /I /Y
     <ClCompile Include="SAVEGAME.CPP" />
     <ClCompile Include="SCAN.CPP" />
     <ClCompile Include="SORT.CPP" />
+    <ClCompile Include="stuckDetector.cpp" />
     <ClCompile Include="VALIDPOS.CPP" />
     <ClCompile Include="VERSION.CPP" />
     <ClCompile Include="WAGON.CPP" />
