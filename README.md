@@ -2,7 +2,8 @@
 
 This is a work on top of the **Little Big Adventure 2 - Engine source code - Community** and **yaz0r** fork, that makes the LBA2 community project buildable and fully playable on Windows.
 
-*NB:* This repository does not have the IdaJS project. If you are looking for IdaJS, please visit: https://ida.innerbytes.com/
+*NB:* This repository does not have the IdaJS project. If you are looking for IdaJS, please visit: 
+https://github.com/innerbytes/idajs
 
 <img width="640" height="480" alt="LBA2_Ida_Edition" src="https://github.com/user-attachments/assets/132184f3-7b6b-48d1-87b7-ba8c7e56a1e6" />
 
