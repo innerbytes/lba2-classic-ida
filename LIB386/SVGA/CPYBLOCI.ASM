@@ -24,9 +24,17 @@
 ;#pragma aux CopyBlockIncrust	"*"				\
 ;	parm caller	[eax] [ebx] [ecx] [edx] [esi]	\
 ;	modify		[edi]
+;   Ida  - modify is not true here, all the 4 volatile registers are modified
 
-CopyBlockIncrust	proc uses ebp,\
+CopyBlockIncrust	proc uses ebx esi edi ebp,\
+			x0:DWORD, y0:DWORD, x1:DWORD, y1:DWORD, src:DWORD,\
 			xd:DWORD, yd:DWORD, dst:DWORD
+
+			mov	eax, x0
+			mov	ebx, y0
+			mov	ecx, x1
+			mov	edx, y1
+			mov	esi, src
 
 			cmp	eax,[ClipXMax]
 			jg	endcopy
