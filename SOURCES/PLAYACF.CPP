@@ -347,25 +347,11 @@ S32	PlayAcf( char *name )
 
 	n = GetNumAcf(name);
 
-	if (n == -1)	return 0;
+	if (n == -1) return 0;
 
-	{
-		S32	var;
-		S32	bit;
-
-		var = n / 16;
-		if (n >= 32)
-		{
-			var = FLAG_ACF2;
-			bit = 1 << (n - 32);
-		}
-		else
-		{
-			var = FLAG_ACF;
-			bit = 1 << n;
-		}
-
-	}
+	// Ida - restoring the original code of saving the played video bit into the game variables.
+	// This makes the memory viewer inventory item work.
+	ListVarGame[FLAG_ACF + (n / 16)] |= (S16)(1 << (n & 15));
 
 	StopMusic();
 
@@ -465,4 +451,3 @@ fin_play:
 
 	return ret;
 }
-
