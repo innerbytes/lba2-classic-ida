@@ -63,9 +63,11 @@ void	AdjustHQRMem( void )
 {
 	U32	memory  ;
 	U32	islemem ;
+	U32	rawSampleMem ;
 	struct SizeInfo	sizeinfo ;
 
 	memory = AvailableMem() ;
+	rawSampleMem = (memory/16)+(memory/32);
 
 	SpriteMem  = (memory/32) 	;
 	Anim3DSMem = (memory/16)	;
@@ -115,6 +117,9 @@ void	AdjustHQRMem( void )
 	if( ListTexDefMem> MAX_LIST_TEXDEF_MEM ) 	ListTexDefMem= MAX_LIST_TEXDEF_MEM ;
 	if( MapSommetYMem> MAX_MAP_SOMMETY_MEM ) 	MapSommetYMem= MAX_MAP_SOMMETY_MEM ;
 	if( MapIntensityMem> MAX_MAP_INTENSITY_MEM ) 	MapIntensityMem= MAX_MAP_INTENSITY_MEM ;
+
+	printf("[MEM] AdjustHQRMem AvailableMem=%u rawSampleMem=%u finalSampleMem=%u min=%u max=%u\n",
+		memory, rawSampleMem, SampleMem, (U32)MIN_SAMPLES_MEM, (U32)MAX_SAMPLES_MEM);
 }
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀

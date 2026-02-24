@@ -31,13 +31,17 @@ HQR_GET_CALLBACK      DelBlocHQRSample ;
 
 void    DelBlocHQRSample( char *name, S32 index )
 {
-        name  = name ;
-        index = index ;
+        name  = name;
+        index = index;
 
-        // methode violente : on vire tous les samples
-        HQ_StopSample() ;
-        // pour remettre la pluie en route
-        RestartRainSample = TRUE        ;
+        // Ida - we can keep HQ_StopSample disabled on the SoLoud path.
+        // MSS (AIL_set_sample_file) depended on HQR source memory lifetime, so the original code needed to stop all samples before HQR eviction.
+        // SoLoud loadRawWave8/16 copies data into Wav::mData, so playback no longer depends on HQR block lifetime.
+        // Audio cut-offs occured if HQR eviction happens often (which is not the case anymore anyways, after we fixed AvailableMem() in yaz.cpp). 
+        // So, enabling this would not do harm, just not necessary anymore.
+        // HQ_StopSample();
+
+        RestartRainSample = TRUE ;
 
         // mise à 0 du pointeur de fonction appelé par HQR_Get()
         HQRGetDelFunc = NULL ;

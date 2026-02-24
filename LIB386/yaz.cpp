@@ -259,6 +259,24 @@ U32 Delete(char* name)
 
 U32	AvailableMem()
 {
+	// Ida - use real available memory so HQR memory budgets are sized correctly.
+	// a too-small value increases HQR cache evictions and runtime churn.
+	// return a conservative fallback if the OS query fails.
+
+	MEMORYSTATUSEX mem;
+	mem.dwLength = sizeof(mem);
+
+	if (GlobalMemoryStatusEx(&mem))
+	{
+		unsigned long long avail = mem.ullAvailPhys + mem.ullAvailPageFile;
+		if (avail > 0xFFFFFFFFULL)
+		{
+			avail = 0xFFFFFFFFULL;
+		}
+		return (U32)avail;
+	}
+
+	// Safe fallback if query fails.
 	return 1000000;
 }
 
