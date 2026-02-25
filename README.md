@@ -2,6 +2,8 @@
 
 This is a work on top of the **Little Big Adventure 2 - Engine source code - Community** and **yaz0r** fork, that makes the LBA2 community project buildable and fully playable on Windows.
 
+**[playtested]** - This build has been fully playtested in all the scenes and situations, is fully playable and completable. All the discovered gameplay bugs are fixed.
+
 *NB:* This repository does not have the IdaJS project. If you are looking for IdaJS, please visit: 
 https://github.com/innerbytes/idajs
 
@@ -10,6 +12,12 @@ https://github.com/innerbytes/idajs
 ## List of fixes on top of the **yaz0r** fork
 
 (https://github.com/yaz0r/lba2-classic-community/)
+
+- **Fixed the SFX glitches when several sound effects played in parallel** 
+
+- **Fixed the memory viewer, that didn't replay any videos** 
+
+- **Fixed the magic slate item, that didn't display any images** 
 
 - **Fixed some rare situations where actors can stuck and block the game progress**  
   In some rare situations actor could collide with environment or a sprite object while walking by script. This can block the game progression. Added a workaround to detect such stucks and force actor object to target position.
