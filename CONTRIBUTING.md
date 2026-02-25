@@ -9,10 +9,10 @@ If you spotted any bugs or want to improve something, the PR is always welcome h
 # Known bugs and issues
 
 ### Minor issues
-- Volume CD is useless property in menu - remove?
-- General volume slider in the menu has no effect - might as well just remove, as general sound can be regulated by the Windows
-- Sometimes white dots and lines artifacts appear on the ground (this is and old issue)
+- Volume CD is useless property in menu - need to just remove.
+- General volume slider in the menu has no effect. Regulate the genetral volume by the Windows volume until this is fixed.
+- Sometimes white dots and lines artifacts appear on the ground (this is and old issue, existing in the original game build as well)
 
 # Contacts
 
-Contact me at [info@innerbytes.com](mailto:info@innerbytes.com) for any questions ot suggestions. 
+Contact me here: https://innerbytes.com#about
