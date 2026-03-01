@@ -13,11 +13,11 @@ https://github.com/innerbytes/idajs
 
 (https://github.com/yaz0r/lba2-classic-community/)
 
-- **Fixed the SFX glitches when several sound effects played in parallel** 
+- **Fixed in-game memory issues**  
+  Memory corruption in BEZIER.cpp caused the tunic disappear sometimes, also fixed the SFX glitches when several sound effects played in parallel, caused by not enough HQR cache memory.
 
-- **Fixed the memory viewer, that didn't replay any videos** 
-
-- **Fixed the magic slate item, that didn't display any images** 
+- **Fixed item issues**  
+  Fixed the memory viewer, that didn't replay any videos. Fixed the magic slate item, that didn't display any images.
 
 - **Fixed some rare situations where actors can stuck and block the game progress**  
   In some rare situations actor could collide with environment or a sprite object while walking by script. This can block the game progression. Added a workaround to detect such stucks and force actor object to target position.
