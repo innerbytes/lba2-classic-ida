@@ -492,8 +492,12 @@ void    ClearVoiceFile()
 
         CloseFdNar() ;
 
-        if ( FlagKeepVoice )    return  ;
+        if (FlagKeepVoice)  return;
 
+        printf("[Ida] FlagKeepVoice was OFF in the configuration. Ignoring.\n");
+
+        // Ida - we don't want to delete the voice files from disk anymore in this edition.
+/*
 #ifdef  DEBUG_TOOLS
 if(!QuietLog)   LogPrintf("FlagKeepVoice=0 !!!!!");
 else            Message("FlagKeepVoice=0 !!!!!", TRUE )  ;
@@ -510,6 +514,7 @@ return  ;
 
         TotalSizeFileHD = 0     ;
 #endif
+*/
 }
 /*-------------------------------------------------------------------------*/
 void    CalcTotalSizeFileOnHD()
